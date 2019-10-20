@@ -29,10 +29,8 @@ class Main(object):
     def mainloop(self):
 
         os.environ['SDL_VIDEO_WINDOW_POS'] = "%d,%d" % (10, 50)
-        screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT), pygame.NOFRAME)
+        screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
         screen.set_colorkey(pygame.Color(15, 255, 0))
-
-        self.transparent_window()
 
         iss = ISS()
         balls = []
@@ -49,7 +47,7 @@ class Main(object):
             screen.fill((255, 255, 255))
             for ball in balls:
                 ball.render(screen)
-                ex = ball.random_move()
+                ex = ball.move()
                 if ex == -1:
                     ball.coords = [random.randint(0, SCREEN_WIDTH), random.randint(0, SCREEN_HEIGHT)]
             iss.render(screen)
