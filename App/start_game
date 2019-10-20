@@ -1,0 +1,61 @@
+import pygame
+import credits1, main
+
+pygame.init()
+WIDHT = 1000
+HEIGHT = 580
+win = pygame.display.set_mode((WIDHT, HEIGHT))
+pygame.display.set_caption("Clear the space!!!")
+background = pygame.image.load('image/best_image1.png')
+
+buttons_size = (200, 94)
+button_play = pygame.Surface(buttons_size)
+button_play_rect = button_play.get_rect()
+button_play = pygame.image.load('image/play_button.png')
+button_play_rect = button_play_rect.move((150,75))
+
+
+button_help = pygame.Surface(buttons_size)
+button_help_rect = button_help.get_rect()
+button_help = pygame.image.load('image/help_button.png')
+button_help_rect = button_help_rect.move((150, 200))
+
+button_credits = pygame.Surface(buttons_size)
+button_credits_rect = button_credits.get_rect()
+button_credits = pygame.image.load('image/credits_button.png')
+button_credits_rect = button_credits_rect.move((150, 325))
+
+button_exit = pygame.Surface(buttons_size)
+button_exit_rect = button_exit.get_rect()
+button_exit = pygame.image.load('image/exit_button.png')
+button_exit_rect = button_exit_rect.move((150, 450))
+
+run = True
+while run:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            run = False
+
+    if pygame.mouse.get_pressed()[0] == 1:
+        if (button_play_rect.right > pygame.mouse.get_pos()[0] > button_play_rect.left) and (button_play_rect.top < pygame.mouse.get_pos()[1] < button_play_rect.bottom):
+
+            app.main()
+
+        elif (button_help_rect.right > pygame.mouse.get_pos()[0] > button_help_rect.left) and (button_help_rect.top < pygame.mouse.get_pos()[1] < button_help_rect.bottom):
+            help_manu.help_manu()
+        elif (button_credits_rect.right > pygame.mouse.get_pos()[0] > button_credits_rect.left) and (button_credits_rect.top < pygame.mouse.get_pos()[1] < button_credits_rect.bottom):
+            credits1.credits()
+
+        elif (button_exit_rect.right > pygame.mouse.get_pos()[0] > button_exit_rect.left) and (button_exit_rect.top < pygame.mouse.get_pos()[1] < button_exit_rect.bottom):
+            run = False
+
+    win.blit(background,(0,0))
+    win.blit(button_play, (button_play_rect.left,button_play_rect.top))
+    win.blit(button_help, (button_help_rect.left, button_help_rect.top))
+    win.blit(button_credits, (button_credits_rect.left,button_credits_rect.top))
+    win.blit(button_exit, (button_exit_rect.left,button_exit_rect.top))
+    pygame.time.delay(25)
+    pygame.display.update()
+
+
+pygame.quit()
