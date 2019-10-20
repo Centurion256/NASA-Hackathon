@@ -27,7 +27,9 @@ class Main(object):
         balls = []
         healthbar = Healthbar(iss)
         for i in range(10):
-            ball = Rubbish(1, random.randint(10, 30), [random.randint(0, SCREEN_WIDTH), random.randint(0, SCREEN_HEIGHT)], [random.randint(-10, 10), random.randint(-10, 10)])
+            ball_pos = random.choice([[random.randint(0, SCREEN_WIDTH),0], [random.randint(0, SCREEN_WIDTH), SCREEN_HEIGHT], 
+                                      [0, random.randint(0, SCREEN_HEIGHT)], [SCREEN_WIDTH, random.randint(0, SCREEN_HEIGHT)]])
+            ball = Rubbish(1, random.randint(10, 30), ball_pos, [random.randint(-10, 10), random.randint(-10, 10)])
             balls.append(ball)
 
         while True:
@@ -44,7 +46,8 @@ class Main(object):
                 col = ball.ISS_colision(iss)
                 if(ex == -1 or col == -1):
                     # side = random.randchoise([(1,0), (0, 1), (-1, 0), (0, -1)])
-                    ball.coords = [random.randint(0, SCREEN_WIDTH), random.randint(0, SCREEN_HEIGHT)]
+                    ball.coords = random.choice([[random.randint(0, SCREEN_WIDTH),0], [random.randint(0, SCREEN_WIDTH), SCREEN_HEIGHT], 
+                                      [0, random.randint(0, SCREEN_HEIGHT)], [SCREEN_WIDTH, random.randint(0, SCREEN_HEIGHT)]])
                 if col == -1:
                     iss.hp -= ball.size//4
                 if iss.hp < 0:
