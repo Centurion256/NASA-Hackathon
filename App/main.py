@@ -1,5 +1,3 @@
-
-
 from App import *
 
 class Main(object):
@@ -27,7 +25,7 @@ class Main(object):
         iss = ISS()
         balls = []
         for i in range(10):
-            ball = Rubbish(1, 50, [random.randint(0, SCREEN_WIDTH), random.randint(0, SCREEN_HEIGHT)], [random.randint(-10, 10), random.randint(-10, 10)])
+            ball = Rubbish(1, 25, [random.randint(0, SCREEN_WIDTH), random.randint(0, SCREEN_HEIGHT)], [random.randint(-10, 10), random.randint(-10, 10)])
             balls.append(ball)
 
         while True:
@@ -39,9 +37,9 @@ class Main(object):
             screen.fill((255, 255, 255))
             for ball in balls:
                 ball.render(screen)
-                # ex = ball.move()
-                # if ex == -1:
-                #     ball.coords = [random.randint(0, SCREEN_WIDTH), random.randint(0, SCREEN_HEIGHT)]
+                ex = ball.move()
+                if ex == -1:
+                    ball.coords = [random.randint(0, SCREEN_WIDTH), random.randint(0, SCREEN_HEIGHT)]
             iss.render(screen)
             pygame.display.flip()
             time.sleep(0.03)
