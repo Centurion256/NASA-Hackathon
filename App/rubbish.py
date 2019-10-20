@@ -24,7 +24,7 @@ class Rubbish(GameObject):
 
     def random_move(self):
         if random.random() < 0.1:
-            self.velocity = (random.randint(-10, 10), random.randint(-10, 10))
+            self.velocity = (random.randint(-5, 5), random.randint(-5, 5))
         return self.move()
 
     def ISS_colision(self, iss):
@@ -33,3 +33,13 @@ class Rubbish(GameObject):
             return -1
         else:
             return 0
+
+    def reset(self):
+        self.coords = random.choice([[random.randint(0, SCREEN_WIDTH),0], [random.randint(0, SCREEN_WIDTH), SCREEN_HEIGHT], 
+                                      [0, random.randint(0, SCREEN_HEIGHT)], [SCREEN_WIDTH, random.randint(0, SCREEN_HEIGHT)]])
+
+    def mouse_collision(self, mouse_pos):
+        if (self.coords[0] <= mouse_pos[0] <= self.coords[0] + self.size) and\
+                (self.coords[1] <= mouse_pos[1] <= self.coords[1] + self.size):
+            print("Collide")
+            self.velocity = (random.randint(-5, 5), random.randint(-5, 5))
