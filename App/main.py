@@ -19,14 +19,15 @@ class Main(object):
     def mainloop(self):
 
         os.environ['SDL_VIDEO_WINDOW_POS'] = "%d,%d" % (10, 50)
-        screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+        screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT), pygame.NOFRAME)
+        self.transparent_window()
         screen.set_colorkey(pygame.Color(15, 255, 0))
         #Чого воно підсвічує?
         background = pygame.transform.scale(pygame.image.load(f"Data/{BACKGROUND_IMAGE}.png"), (SCREEN_WIDTH, SCREEN_HEIGHT))
         iss = ISS()
         balls = []
         healthbar = Healthbar(iss)
-        for i in range(10):
+        for i in range(100):
             ball = Rubbish(1, random.randint(10, 30), [random.randint(0, SCREEN_WIDTH), random.randint(0, SCREEN_HEIGHT)], [random.randint(-10, 10), random.randint(-10, 10)])
             balls.append(ball)
 
@@ -36,7 +37,8 @@ class Main(object):
                     pygame.quit()
                     exit()
 
-            screen.blit(background, (0,0))
+            # screen.blit(background, (0,0))
+            screen.fill((255,255,255))
 
             for ball in balls:
                 ball.render(screen)
@@ -48,7 +50,8 @@ class Main(object):
                 if col == -1:
                     iss.hp -= ball.size//4
                 if iss.hp < 0:
-#                   screen.blit(pygame.image.load("Data/lose.png"))
+                    screen.blit(pygame.transform.scale(pygame.image.load("Data/background_lose.png"),(SCREEN_WIDTH, SCREEN_HEIGHT)), (0,0))
+                    pygame.display.flip()
                     time.sleep(3)
                     exit()
             iss.render(screen)
