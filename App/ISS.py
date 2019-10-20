@@ -1,5 +1,4 @@
-import pygame
-from App.constants import *
+from App import *
 
 
 class ISS(object):

@@ -1,14 +1,6 @@
-import pygame
-import time
-from App.constants import *
-from App.rubbish import Rubbish
-from App.ISS import ISS
-import win32gui
-import win32api
-import win32con
-import os
-import random
 
+
+from App import *
 
 class Main(object):
 
