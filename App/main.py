@@ -29,13 +29,15 @@ class Main(object):
     def mainloop(self):
 
         os.environ['SDL_VIDEO_WINDOW_POS'] = "%d,%d" % (10, 50)
-        screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+        screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT), pygame.NOFRAME)
         screen.set_colorkey(pygame.Color(15, 255, 0))
+
+        self.transparent_window()
 
         iss = ISS()
         balls = []
         for i in range(10):
-            ball = Rubbish(1, 50, [random.randint(0, SCREEN_WIDTH), random.randint(0, SCREEN_HEIGHT)], [random.randint(-10, 10), random.randint(-10, 10)])
+            ball = Rubbish(random.randint(1, 7), 25, [random.randint(0, SCREEN_WIDTH), random.randint(0, SCREEN_HEIGHT)], [random.randint(-10, 10), random.randint(-10, 10)])
             balls.append(ball)
 
         while True:
@@ -47,9 +49,9 @@ class Main(object):
             screen.fill((255, 255, 255))
             for ball in balls:
                 ball.render(screen)
-                # ex = ball.move()
-                # if ex == -1:
-                #     ball.coords = [random.randint(0, SCREEN_WIDTH), random.randint(0, SCREEN_HEIGHT)]
+                ex = ball.random_move()
+                if ex == -1:
+                    ball.coords = [random.randint(0, SCREEN_WIDTH), random.randint(0, SCREEN_HEIGHT)]
             iss.render(screen)
             pygame.display.flip()
             time.sleep(0.03)

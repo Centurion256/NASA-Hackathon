@@ -10,7 +10,7 @@ class Rubbish(object):
         self.size = size
         self.coords = start_point
         self.velocity = velocity
-        self.surface = pygame.transform.scale(pygame.image.load("../Data/spaceship.png"), (self.size, self.size))
+        self.surface = pygame.transform.scale(pygame.image.load(f"../Data/scrap_{model}.png"), (self.size, self.size))
         # self.surface = pygame.Surface((self.size, self.size))
         self.surface.set_colorkey(pygame.Color(15, 255, 0))
         # self.surface.fill((15, 255, 0))
