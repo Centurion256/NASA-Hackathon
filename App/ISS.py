@@ -5,8 +5,8 @@ class ISS(GameObject):
     SIZE = 150
 
     def __init__(self):
-        super().__init__("ISS", 150, ((SCREEN_WIDTH-ISS.SIZE)//2, (SCREEN_HEIGHT-ISS.SIZE)//2))
-        self.hp = 0
+        super().__init__("11 (3)", ISS.SIZE, ((SCREEN_WIDTH-ISS.SIZE)//2, (SCREEN_HEIGHT-ISS.SIZE)//2))
+        self.hp = 100
 
 
 

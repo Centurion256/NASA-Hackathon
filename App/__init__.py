@@ -9,4 +9,5 @@ from .constants import *
 from .GameObject import GameObject
 from .rubbish import Rubbish
 from .ISS import ISS
+from .healthbar import Healthbar
 

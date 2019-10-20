@@ -5,6 +5,7 @@ class Rubbish(GameObject):
 
     def __init__(self, image_name, size, start_point, velocity):
         image_name = "scrap_{}".format(random.randint(1, 7))
+        
         super().__init__(image_name, size, start_point)
         self.velocity = velocity
 
@@ -26,3 +27,9 @@ class Rubbish(GameObject):
             self.velocity = (random.randint(-10, 10), random.randint(-10, 10))
         return self.move()
 
+    def ISS_colision(self, iss):
+        if (iss.coords[0] <= self.coords[0] <= iss.coords[0] + iss.size and
+                iss.coords[1] <= self.coords[1] <= iss.coords[1] + iss.size):
+            return -1
+        else:
+            return 0
